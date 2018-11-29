@@ -4,14 +4,25 @@ let files = {};
 
 function transform(content, data) {
   let start = content.indexOf('<@');
+  let inner = content.substring(start + 2, content.indexOf('@>'));
+  if (inner.indexOf('include(') > -1) {
+    let len = inner.split('include(').length - 1;
+    let i = 0;
+    for (i; i < len; i++) {
+      let filename = inner
+        .substring(inner.indexOf("include('") + 9, inner.indexOf("')"))
+        .replace(/ /g, '');
+      inner =
+        inner.substring(0, inner.indexOf('include(')) +
+        "'" +
+        exports.renderFile(filename, data) +
+        "'" +
+        inner.substring(inner.indexOf(')') + 1);
+    }
+  }
   return (
     content.substring(0, start) +
-    Function(
-      'data',
-      'let f = data => {' +
-        content.substring(start + 2, content.indexOf('@>')) +
-        '}; return f(data);'
-    )(data)
+    Function('data', 'let f = data => {' + inner + '}; return f(data);')(data)
   );
 }
 
@@ -28,7 +39,12 @@ exports.renderFile = function(path, data, cb) {
     content = content.substring(content.indexOf('@>') + 2);
   }
   render += content;
-  cb(null, render.replace(/(\r\n\t|\n|\r\t|  +)/g, ''));
+  let fin = render.replace(/(\r\n\t|\n|\r\t|  +)/g, '');
+  if (cb !== undefined) {
+    cb(null, fin);
+  } else {
+    return fin;
+  }
 };
 
 exports.__express = exports.renderFile;

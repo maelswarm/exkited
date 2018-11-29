@@ -14,7 +14,6 @@ for (let x = 0; x < 10; x++) {
       './views/basic.exkited',
       { a: 0, dayIdx: 3, prices: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
       (err, rendered) => {
-        //console.log(rendered);
         exkitedTimes.push(Date.now() - start);
       }
     );

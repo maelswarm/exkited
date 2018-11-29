@@ -1,0 +1,4 @@
+<@ return 'iajdsjaisdjiadjijidsjidjidsaij'; @>
+<p>
+    <@ return 'iajdsjaisdjiadjijidsjidjidsaij' + include('./views/footer.exkited') + include('./views/footer.exkited'); @>
+</p>

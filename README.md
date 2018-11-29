@@ -4,7 +4,7 @@ Simplistic Template Language
 
 Exkited is a minimalistic templating language that lets you generate markup with JavaScript.
 
-## Example .exkited File
+## Example: .exkited File
 
 ```
 <html>
@@ -55,7 +55,40 @@ Exkited is a minimalistic templating language that lets you generate markup with
 </html>
 ```
 
-## Pairing with Express.js
+## Example: Using include(...)
+
+function include(path)
+
+Parameter "path" is the filepath to the file which you want to include.
+
+Returns a processed string of the given file.
+
+```
+...
+<@ return include('./views/somefile.exkited'); @>
+...
+```
+
+## Example: Using as a Standalone
+
+```
+npm install exkited
+```
+
+```
+const exkited = require('exkited');
+...
+exkited.renderFile(
+    './views/example.exkited',
+    { a: 0, dayIdx: 3, prices: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+    (err, rendered) => {
+        ...
+    }
+);
+...
+```
+
+## Example: Pairing with Express.js
 
 ```
 npm install exkited express compression
