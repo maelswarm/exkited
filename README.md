@@ -55,6 +55,32 @@ Exkited is a minimalistic templating language that lets you generate markup with
 </html>
 ```
 
+## Pairing with Express.js
+
+```
+npm install exkited express compression
+```
+
+```js
+const http = require('http');
+const express = require('express');
+const compression = require('compression');
+const app = express();
+
+app.use(bodyParser.json());
+app.use(compression());
+app.set('view engine', 'exkited');
+app.set('views', './views');
+
+let server = http.createServer(app).listen(8888, '127.0.0.1');
+
+app.get('/', function(req, res) {
+  res.render('basic', {}, function(err, html) {
+    res.send(html);
+  });
+});
+```
+
 ## Benchmarks
 
 Exkited vs. ejs
