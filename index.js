@@ -9,15 +9,24 @@ function transform(content, data) {
     let len = inner.split('include(').length - 1;
     let i = 0;
     for (i; i < len; i++) {
-      let filename = inner
-        .substring(inner.indexOf("include('") + 9, inner.indexOf("')"))
-        .replace(/ /g, '');
+      let filename = inner.substring(
+        inner.indexOf('include(') + 8,
+        inner.substring(inner.indexOf('include(') + 8).indexOf(')') +
+          inner.indexOf('include(') +
+          8
+      );
+      filename = filename.replace(/ /g, '');
+      filename = filename.substring(1, filename.length - 1);
       inner =
         inner.substring(0, inner.indexOf('include(')) +
         "'" +
         exports.renderFile(filename, data) +
         "'" +
-        inner.substring(inner.indexOf(')') + 1);
+        inner.substring(
+          inner.substring(inner.indexOf('include(') + 8).indexOf(')') +
+            inner.indexOf('include(') +
+            9
+        );
     }
   }
   return (

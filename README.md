@@ -1,6 +1,6 @@
 # exkited
 
-<img width="100px" height="100px" align="right" src="https://i.imgur.com/YCLsQnl.png"></img>
+<img width="100px" height="100px" align="right" src="https://i.imgur.com/t6pgoeD.gif"></img>
 
 Simplistic Template Language
 
