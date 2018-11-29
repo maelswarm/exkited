@@ -1,5 +1,7 @@
 # exkited
 
+<img width="100px" height="100px" align="right" src="https://i.imgur.com/YCLsQnl.png"></img>
+
 Simplistic Template Language
 
 Exkited is a minimalistic templating language that lets you generate markup with JavaScript.
