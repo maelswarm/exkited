@@ -1,0 +1,21 @@
+{
+  "name": "exkited",
+  "version": "0.2.0",
+  "description": "Simplistic Template Engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:roecrew/exkited.git"
+  },
+  "keywords": [
+    "template",
+    "templating",
+    "engine",
+    "preprocessor"
+  ],
+  "author": "roecrew",
+  "license": "MIT"
+}
