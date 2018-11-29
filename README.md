@@ -30,25 +30,18 @@ Exkited is a minimalistic templating language that lets you generate markup with
             switch(data.dayIdx) {
                 case 0:
                 return 'Sunday';
-                break;
                 case 1:
                 return 'Monday';
-                break;
                 case 2:
                 return 'Tuesday';
-                break;
                 case 3:
                 return 'Wednesday';
-                break;
-                case 3:
+                case 4:
                 return 'Thursday';
-                break;
-                case 3:
+                case 5:
                 return 'Friday';
-                break;
-                case 3:
+                case 6:
                 return 'Saturday';
-                break;
             }
         @>
     </div>
