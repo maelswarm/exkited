@@ -2,11 +2,9 @@
 
 Simplistic Template Engine
 
-Exkited is made to be minimal and fast.
+Exkited is a minimalistic templating language that lets you generate markup with JavaScript.
 
 ## Example .exkited File
-
-Exkited is a minimalistic templating language that lets you generate markup with JavaScript.
 
 ```
 <html>
@@ -58,5 +56,9 @@ Exkited is a minimalistic templating language that lets you generate markup with
 ```
 
 ## Benchmarks
+
+Exkited vs. ejs
+
+When Exkited and ejs are both paired with express.js, Exkited has a consistent "Waiting (TTFB)" that's ~4.5x faster than ejs.
 
 More will be coming soon.
