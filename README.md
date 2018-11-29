@@ -1,6 +1,6 @@
 # exkited
 
-Simplistic Template Engine
+Simplistic Template Language
 
 Exkited is a minimalistic templating language that lets you generate markup with JavaScript.
 
