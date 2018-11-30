@@ -8,7 +8,7 @@ Exkited is a minimalistic templating language that lets you generate markup with
 
 ## Example: .exkited File
 
-```
+```html
 <html>
     <div class="title">
         <@ return data.title @> // A 'data' object may be passed rendering.
@@ -70,7 +70,7 @@ Returns a processed string of the given file.
 npm install exkited
 ```
 
-```
+```js
 const exkited = require('exkited');
 ...
 exkited.renderFile(
