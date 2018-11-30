@@ -31,7 +31,7 @@ function transform(content, data) {
   }
   return (
     content.substring(0, start) +
-    Function('data', 'let f = data => {' + inner + '}; return f(data);')(data)
+    Function('data', `let f = data => {@{inner}}; return f(data);`)(data)
   );
 }
 
