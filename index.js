@@ -20,7 +20,7 @@ function transform(content, data) {
       inner =
         inner.substring(0, inner.indexOf('include(')) +
         "'" +
-        exports.renderFile(filename, data) +
+        exports.renderFile(filename, data).replace(/'/g, "\\'") +
         "'" +
         inner.substring(
           inner.substring(inner.indexOf('include(') + 8).indexOf(')') +
