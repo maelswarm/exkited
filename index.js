@@ -2,7 +2,7 @@ const fs = require('fs');
 
 let files = {};
 
-function transform(content, data) {
+function transform(content, data, lev) {
   let start = content.indexOf('<@');
   let inner = content.substring(start + 2, content.indexOf('@>'));
   if (inner.indexOf('include(') > -1) {
@@ -20,7 +20,7 @@ function transform(content, data) {
       inner =
         inner.substring(0, inner.indexOf('include(')) +
         "'" +
-        exports.renderFile(filename, data).replace(/'/g, "\\'") +
+        compile(filename, data, ++lev).replace(/'/g, "\\'") +
         "'" +
         inner.substring(
           inner.substring(inner.indexOf('include(') + 8).indexOf(')') +
@@ -35,25 +35,60 @@ function transform(content, data) {
   );
 }
 
-exports.renderFile = function(path, data, cb) {
+let rec = (obj, str, path, content, lev) => {
+  for (const i in obj) {
+    str = '';
+    if (typeof obj[i] === 'object') {
+      str += i;
+      rec(obj[i], str, path, content);
+    } else {
+      if (content.indexOf(str + i) > -1 || lev === 1) {
+        path += str + i + obj[i].toString().replace(/[^a-z0-9]+/g, '');
+      }
+    }
+  }
+  return path;
+};
+
+function constructKey(content, path, data, lev) {
+  path = 'c' + path.replace(/[^a-z0-9]+/g, '');
+  content = content.replace(/[^a-z0-9 ]+/g, '');
+  return rec(data, '', path, content, lev);
+}
+
+function compile(path, data, lev) {
   if (files[path] === undefined) {
     files[path] = fs.readFileSync(path).toString();
   }
-  let content = files[path];
-  content = content.toString();
+  let key = constructKey(files[path], path, data, lev);
   let render = '';
-  let len = content.split('<@').length - 1;
-  for (let i = 0; i < len; i++) {
-    render += transform(content, data);
-    content = content.substring(content.indexOf('@>') + 2);
+  let fin = '';
+  if (files[key] != undefined) {
+    fin = files[key];
+  } else {
+    console.log(key);
+    let content = files[path];
+    content = content.toString();
+    let len = content.split('<@').length - 1;
+    for (let i = 0; i < len; i++) {
+      render += transform(content, data, lev);
+      content = content.substring(content.indexOf('@>') + 2);
+    }
+    render += content;
+    fin = render.replace(/(\r\n\t|\n|\r\t|  +)/g, '');
+    if (files[key] === undefined) {
+      files[key] = fin;
+    }
   }
-  render += content;
-  let fin = render.replace(/(\r\n\t|\n|\r\t|  +)/g, '');
+  return fin;
+}
+
+exports.renderFile = function(path, data, cb) {
+  let fin = compile(path, data, 1);
   if (cb !== undefined) {
     cb(null, fin);
-  } else {
-    return fin;
   }
+  return fin;
 };
 
 exports.__express = exports.renderFile;

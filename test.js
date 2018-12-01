@@ -8,13 +8,13 @@ let exkitedTimes = [];
 let ejsTimes = [];
 
 for (let x = 0; x < 10; x++) {
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < 1000; i++) {
     let start = Date.now();
     exkited.renderFile(
       './views/basic.exkited',
       { a: 0, dayIdx: 3, prices: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
       (err, rendered) => {
-        console.log(rendered);
+        //console.log(rendered);
         exkitedTimes.push(Date.now() - start);
       }
     );
