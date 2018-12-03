@@ -2,13 +2,15 @@
 
 <img width="100px" height="100px" align="right" src="https://i.imgur.com/t6pgoeD.gif"></img>
 
+<p align="center"><a href="https://exkited.com">exkited.com</a></p>
+
 Simplistic Template Language
 
 Exkited is a minimalistic templating language that lets you generate markup with JavaScript.
 
 ## Example: .exkited File
 
-```html
+```js
 <html>
     <div class="title">
         <@ return data.title @> // A 'data' object may be passed rendering.

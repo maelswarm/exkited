@@ -1,6 +1,6 @@
 {
   "name": "exkited",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Simplistic Template Engine",
   "main": "index.js",
   "scripts": {
@@ -17,5 +17,6 @@
     "preprocessor"
   ],
   "author": "roecrew",
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://exkited.com"
 }
