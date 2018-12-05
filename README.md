@@ -112,12 +112,4 @@ app.get('/', function(req, res) {
 
 ## Benchmarks
 
-Exkited vs. ejs
-
-When Exkited and ejs are both paired with express.js, Exkited has a consistent "Waiting (TTFB)" that's ~4.5x faster than ejs.
-
-Exkited vs. Pug
-
-When Exkited and Pug are both paired with express.js, Exkited has a consistent "Waiting (TTFB)" that's ~1.7x faster than Pug.
-
-More will be coming soon.
+Check them out at <a href="https://exkited.com">exkited.com</a>
